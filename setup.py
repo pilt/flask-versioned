@@ -8,6 +8,11 @@ Add version info to file paths. The default configuration will prefix a
 timestamp to and make the path absolute. Paths must be files, if a path
 is unexisting or is a directory, an exception will be raised.
 
+Typically used in templates to allow for really long expiration dates of
+static content::
+
+    <link rel="stylesheet" href="{{"static/css/style.css"|versioned}}">
+
 Links
 `````
 * `development version
