@@ -49,7 +49,7 @@ copyright = u'2010, Simon Pantzare'
 # built documents.
 #
 # The short X.Y version.
-version = '0.9.2'
+version = '0.9.3'
 # The full version, including alpha/beta/rc tags.
 release = version
 
