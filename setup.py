@@ -23,7 +23,7 @@ from setuptools import setup
 
 setup(
     name='Flask-Versioned',
-    version='0.9.3',
+    version='0.9.4',
     url='http://github.com/pilt/flask-versioned',
     license='BSD',
     author='Simon Pantzare',
