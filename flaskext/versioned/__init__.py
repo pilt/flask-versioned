@@ -45,7 +45,7 @@ class FileChangedDriver(Driver):
         mods = time.strftime('%Y%m%dT%H%M%S', modt)
         return self.format % {
             'version': mods,
-            'path': path,
+            'path': stream,
         }
 
 
