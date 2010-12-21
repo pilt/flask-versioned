@@ -21,7 +21,8 @@ class VersionedError(Exception):
 
 
 class Driver(object):
-    def __init__(self, format='/version-%(version)s/%(path)s'):
+    def __init__(self, app, format='/version-%(version)s/%(path)s'):
+        self.app = app
         self.format = format
 
     def version(self, stream):
@@ -31,21 +32,27 @@ class Driver(object):
 class FileChangedDriver(Driver):
 
     def version(self, stream):
-        if not os.path.isfile(stream):
-            raise VersionedError("no such file: %s" % stream)
+        path = stream
+        if os.path.isabs(path):
+            pass
+        else:
+            path = os.path.join(self.app.root_path, path)
 
-        modt = time.localtime(os.path.getmtime(stream))
+        if not os.path.isfile(path):
+            raise VersionedError("no such file: %s" % path)
+
+        modt = time.localtime(os.path.getmtime(path))
         mods = time.strftime('%Y%m%dT%H%M%S', modt)
         return self.format % {
             'version': mods,
-            'path': stream,
+            'path': path,
         }
 
 
 class Versioned(object):
 
     def __init__(self, app, driver_cls=FileChangedDriver, **driver_options):
-        self._driver = driver_cls(**driver_options)
+        self._driver = driver_cls(app, **driver_options)
         app.jinja_env.filters.setdefault('versioned', self)
 
     def __call__(self, stream):
