@@ -7,13 +7,18 @@ Flask-Versioned
 Add version info to file paths. The default configuration will prefix a
 timestamp to and make the path absolute. Paths must be files, if a path
 is unexisting or is a directory, an exception will be raised.
+
+Links
+`````
+* `development version
+  <http://github.com/pilt/flask-versioned/zipball/master#egg=Flask-Versioned-dev>`_
 """
 from setuptools import setup
 
 
 setup(
     name='Flask-Versioned',
-    version='0.9.0',
+    version='0.9.1',
     url='http://github.com/pilt/flask-versioned',
     license='BSD',
     author='Simon Pantzare',
