@@ -33,9 +33,11 @@ class FileChangedDriver(Driver):
 
     def version(self, stream):
         path = stream
-        if os.path.isabs(path):
-            pass
-        else:
+        if os.path.isabs(path) and not os.path.isfile(path):
+            if path.startswith('/'):
+                path = path[1:]
+                stream = path
+
             path = os.path.join(self.app.root_path, path)
 
         if not os.path.isfile(path):
