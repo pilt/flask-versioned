@@ -41,3 +41,9 @@ class VersionedTestCase(unittest.TestCase):
         path = 'flaskext'
         assert os.path.isdir(path)
         self.assertRaises(VersionedError, self.versioned, path)
+
+    def test_04_existing_file_root_relative(self):
+        path = '/setup.py'
+        versioned_path = self.versioned(path)
+        assert versioned_path.startswith('/version-')
+        assert versioned_path.endswith(path)
